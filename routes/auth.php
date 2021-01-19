@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,26 @@ Route::get('/users', [RegisteredUserController::class, 'index'])
     ->middleware('auth')
     ->name('users');
 
+Route::get('/users/create', [UserController::class, 'create'])
+    ->middleware('auth')
+    ->name('user.create');
+
+Route::post('/users/create', [UserController::class, 'store'])
+    ->name('user.store');
+
+Route::get('/users/edit/{user}', [UserController::class, 'edit'])
+    ->middleware('auth')
+    ->name('user.edit');
+
+
+Route::post('/users/edit/{user}', [UserController::class, 'update'])
+    ->name('user.update');
+
+Route::delete('/users/{id}', [UserController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('user.delete');
+
+//
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
     ->middleware('guest')

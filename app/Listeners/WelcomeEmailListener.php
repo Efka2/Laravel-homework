@@ -29,11 +29,6 @@ class WelcomeEmailListener
      */
     public function handle(Registered $event)
     {
-        $event->user->notify(new WelcomeEmailNotification());
-        // $event->user->sendEmailVerificationNotification();
-
-        // if ($event->user instanceof MustVerifyEmail && ! $event->user->hasVerifiedEmail()) {
-        //$event->user->sendEmailVerificationNotification();
-        // }
+        $event->user->notify(new WelcomeEmailNotification($event->user));
     }
 }

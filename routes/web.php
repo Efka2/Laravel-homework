@@ -14,13 +14,13 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('startingPage');
+})->name('startingPage');
 
-Route::get('/dashboard', function () {
+Route::get('/welcome', function () {
     $users = User::all();
-    return view('dashboard')->with('users', $users);
-})->middleware(['auth'])->name('dashboard');
+    return view('welcome')->with('users', $users);
+})->middleware(['auth'])->name('welcome');
 
 
 require __DIR__ . '/auth.php';

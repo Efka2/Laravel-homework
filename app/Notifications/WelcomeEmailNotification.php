@@ -40,12 +40,11 @@ class WelcomeEmailNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $password = $notifiable->password;
         return (new MailMessage)
             ->line('Homework email.')
-            ->line('Thank your for registering! Below you can find your login information.')
+            ->line("$notifiable->name, thank your for registering! Below you can find your login information.")
             ->line("Your email: $notifiable->email")
-            ->line("Password: $password")
+            ->line("Password: $notifiable->password")
             ->line('Thank U for using our application!');
     }
 
